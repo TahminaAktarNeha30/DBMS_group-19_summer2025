@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Management</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Agricultural Supply Chain Management System</h1>
+        <nav>
+            <div class="nav-section">
+                <h2>Core Management</h2>
+                <ul>
+                    <li><a href="index.html">Dashboard</a></li>
+                    <li><a href="product_batch.html">Product Batch Management</a></li>
+                    <li><a href="package_management.html">Package Management</a></li>
+                    <li><a href="factory_management.html">Factory Management</a></li>
+                    <li><a href="storage_facility.html">Storage Facility Management</a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <h2>Inventory & Operations</h2>
+                <ul>
+                    <li><a href="inventory_rotation.html">Inventory Rotation Management</a></li>
+                    <li><a href="sensor_monitoring.html">Sensor Data Monitoring</a></li>
+                    <li><a href="pre_harvest.html">Pre-Harvest Material Tracking</a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <h2>Agricultural & Supply Chain</h2>
+                <ul>
+                    <li><a href="market_management.html">Market Management</a></li>
+                    <li><a href="farmer_info.html">Farmer Information</a></li>
+                    <li><a href="farm_management.html">Farm Management</a></li>
+                    <li><a href="crop_management.html" class="active">Crop Management</a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <h2>Transaction & Records</h2>
+                <ul>
+                    <li><a href="harvest_record.html">Harvest Record Management</a></li>
+                    <li><a href="spoilage_record.html">Spoilage Record Management</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <form id="cropForm">
+                <div class="form-group">
+                    <label for="cropId">Crop ID:</label>
+                    <input type="text" id="cropId" name="cropId" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cropName">Crop Name:</label>
+                    <input type="text" id="cropName" name="cropName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category:</label>
+                    <select id="category" name="category" required>
+                        <option value="">Select Category</option>
+                        <option value="cereals">Cereals</option>
+                        <option value="pulses">Pulses</option>
+                        <option value="vegetables">Vegetables</option>
+                        <option value="fruits">Fruits</option>
+                        <option value="oilseeds">Oilseeds</option>
+                        <option value="spices">Spices</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="waterRequirements">Water Requirements (mm/day):</label>
+                    <input type="number" id="waterRequirements" name="waterRequirements" 
+                           step="0.1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="soilPreference">Soil Preference:</label>
+                    <select id="soilPreference" name="soilPreference" required>
+                        <option value="">Select Soil Preference</option>
+                        <option value="clay">Clay</option>
+                        <option value="sandy">Sandy</option>
+                        <option value="loamy">Loamy</option>
+                        <option value="silt">Silt</option>
+                        <option value="peat">Peat</option>
+                        <option value="chalk">Chalk</option>
+                        <option value="any">Any</option>
+                    </select>
+                </div>
+
+                <button type="submit">Save Crop</button>
+            </form>
+        </div>
+
+        <h2>Crop List</h2>
+        <table id="cropTable">
+            <thead>
+                <tr>
+                    <th>Crop ID</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Water Requirements</th>
+                    <th>Soil Preference</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be populated by JavaScript -->
+            </tbody>
+        </table>
+    </main>
+
+    <script src="js/crop_management.js"></script>
+</body>
+</html>
