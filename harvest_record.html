@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harvest Record Management</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Harvest Record Management</h1>
+        <a href="index.html">Back to Home</a>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <form id="harvestForm">
+                <div class="form-group">
+                    <label for="recordId">Record ID:</label>
+                    <input type="text" id="recordId" name="recordId" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="status">Status:</label>
+                    <select id="status" name="status" required>
+                        <option value="">Select Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="in_progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                        <option value="failed">Failed</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Quantity (kg):</label>
+                    <input type="number" id="quantity" name="quantity" step="0.01" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="harvestTime">Harvest Time:</label>
+                    <input type="datetime-local" id="harvestTime" name="harvestTime" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="sowingDate">Sowing Date:</label>
+                    <input type="date" id="sowingDate" name="sowingDate" required>
+                </div>
+
+                <button type="submit">Save Harvest Record</button>
+            </form>
+        </div>
+
+        <h2>Harvest Records List</h2>
+        <table id="harvestTable">
+            <thead>
+                <tr>
+                    <th>Record ID</th>
+                    <th>Status</th>
+                    <th>Quantity (kg)</th>
+                    <th>Harvest Time</th>
+                    <th>Sowing Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be populated by JavaScript -->
+            </tbody>
+        </table>
+    </main>
+
+    <script src="js/harvest_record.js"></script>
+</body>
+</html>
