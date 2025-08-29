@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farm Management</title>
+    <title>Crop Management</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -35,8 +35,8 @@
                 <ul>
                     <li><a href="market_management.html">Market Management</a></li>
                     <li><a href="farmer_info.html">Farmer Information</a></li>
-                    <li><a href="farm_management.html" class="active">Farm Management</a></li>
-                    <li><a href="crop_management.html">Crop Management</a></li>
+                    <li><a href="farm_management.html">Farm Management</a></li>
+                    <li><a href="crop_management.html" class="active">Crop Management</a></li>
                 </ul>
             </div>
             
@@ -52,60 +52,63 @@
 
     <main>
         <div class="form-container">
-            <form id="farmForm">
+            <form id="cropForm">
                 <div class="form-group">
-                    <label for="farmId">Farm ID:</label>
-                    <input type="text" id="farmId" name="farmId" required>
+                    <label for="cropId">Crop ID:</label>
+                    <input type="text" id="cropId" name="cropId" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="location">Location:</label>
-                    <input type="text" id="location" name="location" required>
+                    <label for="cropName">Crop Name:</label>
+                    <input type="text" id="cropName" name="cropName" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="size">Size (hectares):</label>
-                    <input type="number" id="size" name="size" step="0.01" required>
+                    <label for="category">Category:</label>
+                    <select id="category" name="category" required>
+                        <option value="">Select Category</option>
+                        <option value="cereals">Cereals</option>
+                        <option value="pulses">Pulses</option>
+                        <option value="vegetables">Vegetables</option>
+                        <option value="fruits">Fruits</option>
+                        <option value="oilseeds">Oilseeds</option>
+                        <option value="spices">Spices</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="soilType">Soil Type:</label>
-                    <select id="soilType" name="soilType" required>
-                        <option value="">Select Soil Type</option>
+                    <label for="waterRequirements">Water Requirements (mm/day):</label>
+                    <input type="number" id="waterRequirements" name="waterRequirements" 
+                           step="0.1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="soilPreference">Soil Preference:</label>
+                    <select id="soilPreference" name="soilPreference" required>
+                        <option value="">Select Soil Preference</option>
                         <option value="clay">Clay</option>
                         <option value="sandy">Sandy</option>
                         <option value="loamy">Loamy</option>
                         <option value="silt">Silt</option>
                         <option value="peat">Peat</option>
                         <option value="chalk">Chalk</option>
+                        <option value="any">Any</option>
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <label for="irrigationMethod">Irrigation Method:</label>
-                    <select id="irrigationMethod" name="irrigationMethod" required>
-                        <option value="">Select Irrigation Method</option>
-                        <option value="drip">Drip Irrigation</option>
-                        <option value="sprinkler">Sprinkler System</option>
-                        <option value="surface">Surface Irrigation</option>
-                        <option value="center_pivot">Center Pivot</option>
-                        <option value="subsurface">Subsurface</option>
-                    </select>
-                </div>
-
-                <button type="submit">Save Farm</button>
+                <button type="submit">Save Crop</button>
             </form>
         </div>
 
-        <h2>Farm List</h2>
-        <table id="farmTable">
+        <h2>Crop List</h2>
+        <table id="cropTable">
             <thead>
                 <tr>
-                    <th>Farm ID</th>
-                    <th>Location</th>
-                    <th>Size (ha)</th>
-                    <th>Soil Type</th>
-                    <th>Irrigation Method</th>
+                    <th>Crop ID</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Water Requirements</th>
+                    <th>Soil Preference</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -115,6 +118,6 @@
         </table>
     </main>
 
-    <script src="js/farm_management.js"></script>
+    <script src="js/crop_management.js"></script>
 </body>
 </html>
