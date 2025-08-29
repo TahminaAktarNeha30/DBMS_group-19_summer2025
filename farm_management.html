@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Management</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Agricultural Supply Chain Management System</h1>
+        <nav>
+            <div class="nav-section">
+                <h2>Core Management</h2>
+                <ul>
+                    <li><a href="index.html">Dashboard</a></li>
+                    <li><a href="product_batch.html">Product Batch Management</a></li>
+                    <li><a href="package_management.html">Package Management</a></li>
+                    <li><a href="factory_management.html">Factory Management</a></li>
+                    <li><a href="storage_facility.html">Storage Facility Management</a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <h2>Inventory & Operations</h2>
+                <ul>
+                    <li><a href="inventory_rotation.html">Inventory Rotation Management</a></li>
+                    <li><a href="sensor_monitoring.html">Sensor Data Monitoring</a></li>
+                    <li><a href="pre_harvest.html">Pre-Harvest Material Tracking</a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <h2>Agricultural & Supply Chain</h2>
+                <ul>
+                    <li><a href="market_management.html">Market Management</a></li>
+                    <li><a href="farmer_info.html">Farmer Information</a></li>
+                    <li><a href="farm_management.html" class="active">Farm Management</a></li>
+                    <li><a href="crop_management.html">Crop Management</a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <h2>Transaction & Records</h2>
+                <ul>
+                    <li><a href="harvest_record.html">Harvest Record Management</a></li>
+                    <li><a href="spoilage_record.html">Spoilage Record Management</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <form id="farmForm">
+                <div class="form-group">
+                    <label for="farmId">Farm ID:</label>
+                    <input type="text" id="farmId" name="farmId" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location:</label>
+                    <input type="text" id="location" name="location" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="size">Size (hectares):</label>
+                    <input type="number" id="size" name="size" step="0.01" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="soilType">Soil Type:</label>
+                    <select id="soilType" name="soilType" required>
+                        <option value="">Select Soil Type</option>
+                        <option value="clay">Clay</option>
+                        <option value="sandy">Sandy</option>
+                        <option value="loamy">Loamy</option>
+                        <option value="silt">Silt</option>
+                        <option value="peat">Peat</option>
+                        <option value="chalk">Chalk</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="irrigationMethod">Irrigation Method:</label>
+                    <select id="irrigationMethod" name="irrigationMethod" required>
+                        <option value="">Select Irrigation Method</option>
+                        <option value="drip">Drip Irrigation</option>
+                        <option value="sprinkler">Sprinkler System</option>
+                        <option value="surface">Surface Irrigation</option>
+                        <option value="center_pivot">Center Pivot</option>
+                        <option value="subsurface">Subsurface</option>
+                    </select>
+                </div>
+
+                <button type="submit">Save Farm</button>
+            </form>
+        </div>
+
+        <h2>Farm List</h2>
+        <table id="farmTable">
+            <thead>
+                <tr>
+                    <th>Farm ID</th>
+                    <th>Location</th>
+                    <th>Size (ha)</th>
+                    <th>Soil Type</th>
+                    <th>Irrigation Method</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be populated by JavaScript -->
+            </tbody>
+        </table>
+    </main>
+
+    <script src="js/farm_management.js"></script>
+</body>
+</html>
