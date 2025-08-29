@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agricultural Supply Chain Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1>Agricultural Supply Chain Management System</h1>
+            </div>
+            <nav class="navbar">
+                <div class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon">🏠</i>
+                            <span>Dashboard</span>
+                            <i class="arrow">▼</i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html">Overview</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon">📦</i>
+                            <span>Inventory & Operations</span>
+                            <i class="arrow">▼</i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="product_batch.html">Product Batch Management</a></li>
+                            <li><a href="package_management.html">Package Management</a></li>
+                            <li><a href="factory_management.html">Factory Management</a></li>
+                            <li><a href="storage_facility.html">Storage Facility Management</a></li>
+                            <li><a href="inventory_rotation.html">Inventory Rotation</a></li>
+                            <li><a href="sensor_monitoring.html">Sensor Monitoring</a></li>
+                            <li><a href="pre_harvest.html">Pre-Harvest Materials</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon">🌾</i>
+                            <span>Agricultural & Supply Chain</span>
+                            <i class="arrow">▼</i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="market_management.html">Market Management</a></li>
+                            <li><a href="farmer_info.html">Farmer Information</a></li>
+                            <li><a href="farm_management.html">Farm Management</a></li>
+                            <li><a href="crop_management.html">Crop Management</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon">📊</i>
+                            <span>Transaction & Records</span>
+                            <i class="arrow">▼</i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="harvest_record.html">Harvest Records</a></li>
+                            <li><a href="spoilage_record.html">Spoilage Records</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <a href="php/logout.php" class="secondary logout-btn" style="text-decoration:none; display:inline-block; padding:.5rem .875rem; border-radius: var(--radius-md); border:2px solid var(--border-color); margin-left: .75rem;">Logout</a>
+        </div>
+    </header>
+
+    <main>
+        <h2>Welcome to the Agricultural Supply Chain Management System</h2>
+        <p>Select a module from the navigation menu to begin.</p>
+
+        <section class="dashboard">
+            <h2>Analytics Overview</h2>
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <h3>Total Packages</h3>
+                    <div id="kpiPackages">-</div>
+                </div>
+                <div class="kpi-card">
+                    <h3>Total Batches</h3>
+                    <div id="kpiBatches">-</div>
+                </div>
+                <div class="kpi-card">
+                    <h3>Active Markets</h3>
+                    <div id="kpiMarkets">-</div>
+                </div>
+                <div class="kpi-card">
+                    <h3>Storage Facilities</h3>
+                    <div id="kpiStorage">-</div>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Packages by Type</h3>
+                    <canvas id="chartPackagesByType"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Harvest Quantity Over Time</h3>
+                    <canvas id="chartHarvestOverTime"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Sensor Temperature (Last 24h)</h3>
+                    <canvas id="chartTemperature"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Spoilage by Reason</h3>
+                    <canvas id="chartSpoilageReason"></canvas>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
