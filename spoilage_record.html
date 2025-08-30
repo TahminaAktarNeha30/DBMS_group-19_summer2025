@@ -21,8 +21,14 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="batchId">Batch ID:</label>
-                    <input type="text" id="batchId" name="batchId">
+                    <label for="sourceType">Source Type:</label>
+                    <select id="sourceType" name="sourceType" required>
+                        <option value="">Select Source Type</option>
+                        <option value="storage">Storage</option>
+                        <option value="transport">Transport</option>
+                        <option value="processing">Processing</option>
+                        <option value="packaging">Packaging</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -40,6 +46,21 @@
                     <input type="date" id="spoilageDate" name="spoilageDate" required>
                 </div>
 
+                <div class="form-group">
+                    <label for="recyclingOutput">Recycling Output:</label>
+                    <input type="text" id="recyclingOutput" name="recyclingOutput">
+                </div>
+
+                <div class="form-group">
+                    <label for="recyclingQuantity">Recycling Quantity (KG):</label>
+                    <input type="number" id="recyclingQuantity" name="recyclingQuantity" step="0.01" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label for="financialLoss">Financial Loss:</label>
+                    <input type="number" id="financialLoss" name="financialLoss" step="0.01" required>
+                </div>
+
                 <button type="submit">Save Spoilage</button>
             </form>
         </div>
@@ -49,16 +70,20 @@
             <thead>
                 <tr>
                     <th>Record ID</th>
-                    <th>Batch ID</th>
+                    <th>Source Type</th>
                     <th>Quantity Lost</th>
                     <th>Reason</th>
-                    <th>Date</th>
+                    <th>Spoilage Date</th>
+                    <th>Recycling Output</th>
+                    <th>Recycling Quantity</th>
+                    <th>Financial Loss</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody></tbody>
         </table>
     </main>
+    <script src="js/suppress-extension-errors.js"></script>
     <script src="js/spoilage_record.js"></script>
 </body>
 </html>

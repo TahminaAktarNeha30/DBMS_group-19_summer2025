@@ -5,76 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agricultural Supply Chain Management System</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/suppress-extension-errors.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment"></script>
 </head>
 <body>
     <header>
-        <div class="header-container">
-            <div class="logo">
-                <h1>Agricultural Supply Chain Management System</h1>
-            </div>
-            <nav class="navbar">
-                <div class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navMenu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <ul class="nav-menu" id="navMenu">
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
-                            <i class="icon">🏠</i>
-                            <span>Dashboard</span>
-                            <i class="arrow">▼</i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="index.html">Overview</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
-                            <i class="icon">📦</i>
-                            <span>Inventory & Operations</span>
-                            <i class="arrow">▼</i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="product_batch.html">Product Batch Management</a></li>
-                            <li><a href="package_management.html">Package Management</a></li>
-                            <li><a href="factory_management.html">Factory Management</a></li>
-                            <li><a href="storage_facility.html">Storage Facility Management</a></li>
-                            <li><a href="inventory_rotation.html">Inventory Rotation</a></li>
-                            <li><a href="sensor_monitoring.html">Sensor Monitoring</a></li>
-                            <li><a href="pre_harvest.html">Pre-Harvest Materials</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
-                            <i class="icon">🌾</i>
-                            <span>Agricultural & Supply Chain</span>
-                            <i class="arrow">▼</i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="market_management.html">Market Management</a></li>
-                            <li><a href="farmer_info.html">Farmer Information</a></li>
-                            <li><a href="farm_management.html">Farm Management</a></li>
-                            <li><a href="crop_management.html">Crop Management</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
-                            <i class="icon">📊</i>
-                            <span>Transaction & Records</span>
-                            <i class="arrow">▼</i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="harvest_record.html">Harvest Records</a></li>
-                            <li><a href="spoilage_record.html">Spoilage Records</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-            <a href="php/logout.php" class="secondary logout-btn" style="text-decoration:none; display:inline-block; padding:.5rem .875rem; border-radius: var(--radius-md); border:2px solid var(--border-color); margin-left: .75rem;">Logout</a>
-        </div>
+        <h1>Agricultural Supply Chain Management System</h1>
+        <nav class="main-nav">
+            <a href="index.html" class="nav-button">Dashboard</a>
+            <a href="inventory-operations.html" class="nav-button">Inventory & Operations</a>
+            <a href="agricultural-supply.html" class="nav-button">Agricultural & Supply Chain</a>
+            <a href="transaction-records.html" class="nav-button">Transaction & Records</a>
+        </nav>
     </header>
 
     <main>

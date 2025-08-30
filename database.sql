@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS product_batches (
     production_date DATE NOT NULL,
     expiry_date DATE,
     quality_grade VARCHAR(10),
+    weight DECIMAL(10,2),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -47,8 +48,9 @@ CREATE TABLE IF NOT EXISTS inventory_rotations (
     batch_id VARCHAR(50),
     facility_id VARCHAR(50),
     quantity INT,
+    strategy VARCHAR(50),
     rotation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    rotation_type ENUM('IN', 'OUT'),
+    rotation_type VARCHAR(50),
     FOREIGN KEY (batch_id) REFERENCES product_batches(batch_id),
     FOREIGN KEY (facility_id) REFERENCES storage_facilities(facility_id)
 );
@@ -114,4 +116,16 @@ CREATE TABLE IF NOT EXISTS harvest_records (
     harvest_time DATETIME NOT NULL,
     sowing_date DATE NOT NULL,
     FOREIGN KEY (crop_id) REFERENCES crops(crop_id)
+);
+
+-- Spoilage Record Management
+CREATE TABLE IF NOT EXISTS spoilage_records (
+    record_id VARCHAR(50) PRIMARY KEY,
+    source_type VARCHAR(50) NOT NULL,
+    quantity_lost DECIMAL(10,2) NOT NULL,
+    reason VARCHAR(255),
+    disposal_method VARCHAR(50) NOT NULL,
+    recycling_output VARCHAR(255),
+    financial_loss DECIMAL(10,2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
