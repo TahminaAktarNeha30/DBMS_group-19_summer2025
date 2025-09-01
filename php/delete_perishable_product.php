@@ -1,0 +1,34 @@
+<?php
+// Ensure JSON output and suppress HTML errors
+header('Content-Type: application/json');
+error_reporting(0);
+ini_set('display_errors', 0);
+
+// Database connection
+$db_config = include 'config.php';
+$conn = new mysqli($db_config['host'], $db_config['username'], $db_config['password'], $db_config['database']);
+
+if ($conn->connect_error) {
+    die(json_encode(['success' => false, 'error' => 'Connection failed: ' . $conn->connect_error]));
+}
+
+if (!isset($_GET['id'])) {
+    echo json_encode(['success' => false, 'error' => 'Product ID is required']);
+    exit;
+}
+
+$productId = $_GET['id'];
+
+$stmt = $conn->prepare("DELETE FROM perishable_products WHERE product_id = ?");
+$stmt->bind_param("s", $productId);
+$stmt->execute();
+
+if ($stmt->affected_rows === 0) {
+    echo json_encode(['success' => false, 'error' => 'Product not found or already deleted']);
+} else {
+    echo json_encode(['success' => true]);
+}
+
+$stmt->close();
+$conn->close();
+?>
