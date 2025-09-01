@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Setup - Perishable Products</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Database Setup</h1>
+        <a href="index.html">Back to Home</a>
+    </header>
+
+    <main>
+        <h2>Setup Perishable Products Database Table</h2>
+        
+        <div style="background: #e6ffe6; padding: 20px; border-radius: 5px; margin: 20px 0;">
+            <h3>Instructions:</h3>
+            <p>Click the button below to create the perishable_products table and insert sample data.</p>
+        </div>
+
+        <button onclick="setupDatabase()" style="padding: 15px 30px; font-size: 16px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            Create Database Table
+        </button>
+
+        <div id="setupResults" style="margin-top: 20px; padding: 20px; border: 1px solid #ccc; border-radius: 5px; display: none;">
+            <h3>Setup Results:</h3>
+            <div id="setupOutput"></div>
+        </div>
+
+        <div style="margin-top: 30px;">
+            <h3>After Setup:</h3>
+            <p>Once the table is created successfully, you can:</p>
+            <ul>
+                <li><a href="perishable_products.html">Access the Perishable Products module</a></li>
+                <li><a href="debug_perishable.html">Use the debug page to test functionality</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <script>
+        function setupDatabase() {
+            const resultsDiv = document.getElementById('setupResults');
+            const outputDiv = document.getElementById('setupOutput');
+            
+            resultsDiv.style.display = 'block';
+            outputDiv.innerHTML = '<p style="color: blue;">Setting up database...</p>';
+            
+            fetch('setup_database.php')
+                .then(response => response.text())
+                .then(data => {
+                    outputDiv.innerHTML = '<pre style="background: #f5f5f5; padding: 10px; border-radius: 3px;">' + data + '</pre>';
+                    
+                    if (data.includes('✓') && !data.includes('✗ perishable_products table was not created')) {
+                        outputDiv.innerHTML += '<p style="color: green; font-weight: bold;">✓ Setup completed successfully!</p>';
+                        outputDiv.innerHTML += '<p><a href="perishable_products.html" style="background: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Go to Perishable Products →</a></p>';
+                    } else {
+                        outputDiv.innerHTML += '<p style="color: red; font-weight: bold;">⚠ Setup encountered issues. Please check the errors above.</p>';
+                    }
+                })
+                .catch(error => {
+                    outputDiv.innerHTML = '<p style="color: red;">Error: ' + error.message + '</p>';
+                    console.error('Setup error:', error);
+                });
+        }
+    </script>
+</body>
+</html>

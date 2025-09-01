@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Perishable Products Module</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Test Perishable Products Module</h1>
+        <a href="index.html">Back to Home</a>
+    </header>
+
+    <main>
+        <h2>Module Testing</h2>
+        <div id="testResults">
+            <p>Testing database connection and module functionality...</p>
+        </div>
+        
+        <div class="form-container">
+            <h3>Quick Test Actions</h3>
+            <button onclick="testSuppliers()">Test Load Suppliers</button>
+            <button onclick="testProducts()">Test Load Products</button>
+            <button onclick="checkTables()">Check Database Tables</button>
+        </div>
+
+        <div id="results"></div>
+    </main>
+
+    <script>
+        function displayResult(message, isError = false) {
+            const results = document.getElementById('results');
+            const div = document.createElement('div');
+            div.style.padding = '10px';
+            div.style.margin = '10px 0';
+            div.style.borderRadius = '5px';
+            div.style.border = `2px solid ${isError ? '#ef4444' : '#10b981'}`;
+            div.style.backgroundColor = isError ? '#fef2f2' : '#f0f9ff';
+            div.style.color = isError ? '#dc2626' : '#059669';
+            div.innerHTML = `<strong>${isError ? 'Error' : 'Success'}:</strong> ${message}`;
+            results.appendChild(div);
+        }
+
+        function testSuppliers() {
+            fetch('php/get_suppliers.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        displayResult(`Suppliers loaded successfully! Found ${data.data.length} suppliers.`);
+                    } else {
+                        displayResult(`Failed to load suppliers: ${data.error}`, true);
+                    }
+                })
+                .catch(error => {
+                    displayResult(`Error testing suppliers: ${error.message}`, true);
+                });
+        }
+
+        function testProducts() {
+            fetch('php/get_perishable_products.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        displayResult(`Products loaded successfully! Found ${data.data.length} products.`);
+                    } else {
+                        displayResult(`Failed to load products: ${data.error}`, true);
+                    }
+                })
+                .catch(error => {
+                    displayResult(`Error testing products: ${error.message}`, true);
+                });
+        }
+
+        function checkTables() {
+            // This will be handled by checking if the endpoints work
+            Promise.all([
+                fetch('php/get_suppliers.php'),
+                fetch('php/get_perishable_products.php')
+            ])
+            .then(responses => Promise.all(responses.map(r => r.json())))
+            .then(data => {
+                const [suppliersResult, productsResult] = data;
+                let message = 'Database Tables Status:\n';
+                message += `- Suppliers table: ${suppliersResult.success ? 'OK' : 'Error - ' + suppliersResult.error}\n`;
+                message += `- Perishable Products table: ${productsResult.success ? 'OK' : 'Error - ' + productsResult.error}`;
+                
+                const allOk = suppliersResult.success && productsResult.success;
+                displayResult(message.replace(/\n/g, '<br>'), !allOk);
+            })
+            .catch(error => {
+                displayResult(`Error checking tables: ${error.message}`, true);
+            });
+        }
+
+        // Auto-run tests when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                checkTables();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

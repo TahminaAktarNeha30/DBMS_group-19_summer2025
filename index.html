@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agricultural Supply Chain Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/suppress-extension-errors.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment"></script>
+</head>
+<body>
+    <header>
+        <h1>Agricultural Supply Chain Management System</h1>
+        <nav class="main-nav">
+            <a href="index.html" class="nav-button">Dashboard</a>
+            <a href="inventory-operations.html" class="nav-button">Inventory & Operations</a>
+            <a href="agricultural-supply.html" class="nav-button">Agricultural & Supply Chain</a>
+            <a href="transaction-records.html" class="nav-button">Transaction & Records</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Welcome to the Agricultural Supply Chain Management System</h2>
+        <p>Select a module from the navigation menu to begin.</p>
+
+        <section class="dashboard">
+            <h2>Analytics Overview</h2>
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <h3>Total Packages</h3>
+                    <div id="kpiPackages">-</div>
+                </div>
+                <div class="kpi-card">
+                    <h3>Total Batches</h3>
+                    <div id="kpiBatches">-</div>
+                </div>
+                <div class="kpi-card">
+                    <h3>Active Markets</h3>
+                    <div id="kpiMarkets">-</div>
+                </div>
+                <div class="kpi-card">
+                    <h3>Storage Facilities</h3>
+                    <div id="kpiStorage">-</div>
+                </div>
+            </div>
+
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <h3>Packages by Type</h3>
+                    <canvas id="chartPackagesByType"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Harvest Quantity Over Time</h3>
+                    <canvas id="chartHarvestOverTime"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Sensor Temperature (Last 24h)</h3>
+                    <canvas id="chartTemperature"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>Spoilage by Reason</h3>
+                    <canvas id="chartSpoilageReason"></canvas>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

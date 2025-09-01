@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensor Data Monitoring</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/suppress-extension-errors.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.1/dist/chartjs-adapter-moment.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Sensor Data Monitoring</h1>
+        <a href="index.html">Back to Home</a>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <form id="sensorForm">
+                <div class="form-group">
+                    <label for="sensorId">Sensor Data ID:</label>
+                    <input type="text" id="sensorId" name="sensorId" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="humidity">Current Humidity (%):</label>
+                    <input type="number" id="humidity" name="humidity" min="0" max="100" step="0.1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="oxygenLevel">Oxygen Level (%):</label>
+                    <input type="number" id="oxygenLevel" name="oxygenLevel" min="0" max="100" step="0.1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="pH">pH Level:</label>
+                    <input type="number" id="pH" name="pH" min="0" max="14" step="0.1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="temperature">Current Temperature (°C):</label>
+                    <input type="number" id="temperature" name="temperature" step="0.1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="readingTimestamp">Reading Timestamp:</label>
+                    <input type="datetime-local" id="readingTimestamp" name="readingTimestamp" required>
+                </div>
+
+                <button type="submit">Save Sensor Data</button>
+            </form>
+        </div>
+
+        <div class="dashboard">
+            <h2>Real-time Monitoring Dashboard</h2>
+            <div class="chart-container">
+                <canvas id="temperatureChart"></canvas>
+                <canvas id="humidityChart"></canvas>
+                <canvas id="oxygenChart"></canvas>
+                <canvas id="pHChart"></canvas>
+            </div>
+        </div>
+
+        <h2>Sensor Data History</h2>
+        <table id="sensorTable">
+            <thead>
+                <tr>
+                    <th>Sensor ID</th>
+                    <th>Humidity (%)</th>
+                    <th>Oxygen Level (%)</th>
+                    <th>pH Level</th>
+                    <th>Temperature (°C)</th>
+                    <th>Timestamp</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be populated by JavaScript -->
+            </tbody>
+        </table>
+    </main>
+
+    <script src="js/sensor_monitoring.js"></script>
+</body>
+</html>

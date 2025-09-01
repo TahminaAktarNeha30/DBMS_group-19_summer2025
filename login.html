@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Login page enhancements */
+        .login-wrapper { position: relative; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 2rem; overflow: hidden; }
+        .login-wrapper::before, .login-wrapper::after { content: ""; position: absolute; border-radius: 50%; filter: blur(60px); opacity: .25; pointer-events: none; }
+        .login-wrapper::before { width: 480px; height: 480px; background: radial-gradient(circle at 30% 30%, var(--primary-light), transparent 60%); top: -120px; left: -120px; }
+        .login-wrapper::after { width: 520px; height: 520px; background: radial-gradient(circle at 70% 70%, var(--secondary-color), transparent 60%); bottom: -140px; right: -140px; }
+
+        .login-card { position: relative; width: 100%; max-width: 440px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 1.25rem; box-shadow: var(--shadow-xl); padding: 2.25rem; overflow: hidden; }
+        .login-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color)); }
+
+        .brand { display: flex; align-items: center; justify-content: center; gap: .5rem; margin-bottom: .5rem; }
+        .brand-badge { width: 42px; height: 42px; display: grid; place-items: center; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: var(--text-white); border-radius: .75rem; box-shadow: var(--shadow-md); font-weight: 700; }
+        .login-card h1 { margin: 0; font-size: 1.5rem; font-weight: 800; color: var(--text-primary); text-align: center; letter-spacing: .01em; }
+        .login-card p { color: var(--text-secondary); text-align: center; margin: .5rem 0 1.5rem; }
+
+        .form-group { margin-bottom: 1rem; }
+        .input-group { position: relative; }
+        .input-group .toggle { position: absolute; right: .5rem; top: 50%; transform: translateY(-50%); background: transparent; border: 0; color: var(--text-secondary); cursor: pointer; padding: .25rem .5rem; border-radius: var(--radius-sm); }
+        .input-group .toggle:hover { color: var(--primary-color); background: var(--bg-secondary); }
+        .input-group .icon { position: absolute; left: .75rem; top: 50%; transform: translateY(-50%); color: var(--text-light); pointer-events: none; font-size: .95rem; }
+        .input-group input { padding-left: 2.25rem; }
+        .input-group:focus-within .icon { color: var(--primary-color); }
+        .input-group input:hover { border-color: var(--primary-light); }
+        .input-group input:focus { border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12); }
+
+        .actions { display: flex; gap: .75rem; align-items: center; justify-content: space-between; margin-top: .5rem; }
+        .subtle { display: block; text-align: center; margin-top: .75rem; color: var(--text-secondary); font-size: .875rem; }
+        .error { margin-top: .75rem; color: var(--error-color); font-weight: 600; text-align: center; }
+        .help { font-size: .875rem; color: var(--text-secondary); text-align: center; margin-top: .5rem; }
+
+        @media (max-width: 480px) {
+            .login-card { padding: 1.5rem; border-radius: 1rem; }
+        }
+    </style>
+    <script>
+        function setDefaultCredentials() {
+            var email = document.getElementById('email');
+            var password = document.getElementById('password');
+            if (email && !email.value) email.value = 'example@gmail.com';
+            if (password && !password.value) password.value = 'admin1234';
+        }
+        function setupPasswordToggle() {
+            var btn = document.getElementById('togglePassword');
+            var input = document.getElementById('password');
+            if (!btn || !input) return;
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                var isText = input.getAttribute('type') === 'text';
+                input.setAttribute('type', isText ? 'password' : 'text');
+                btn.textContent = isText ? 'Show' : 'Hide';
+            });
+        }
+        document.addEventListener('DOMContentLoaded', function(){ setDefaultCredentials(); setupPasswordToggle(); });
+    </script>
+    <!-- Prevent caching after logout -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+</head>
+<body>
+    <div class="login-wrapper">
+        <form class="login-card" method="post" action="php/login.php" novalidate>
+            <div class="brand">
+                <div class="brand-badge">AS</div>
+            </div>
+            <h1>Welcome back</h1>
+            <p>Sign in to your account to continue</p>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <div class="input-group">
+                    <span class="icon">✉️</span>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-group">
+                    <span class="icon">🔒</span>
+                    <input type="password" id="password" name="password" placeholder="Your password" required>
+                    <button id="togglePassword" class="toggle">Show</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="module">Module</label>
+                <select id="module" name="module" required>
+                    <option value="inventory_operations">Inventory &amp; Operations</option>
+                    <option value="agriculture_supply_chain">Agriculture &amp; Supply Chain</option>
+                    <option value="transaction_records">Transaction &amp; Records</option>
+                </select>
+            </div>
+
+            <div class="actions">
+                <button type="submit">Login</button>
+                <a class="secondary" href="index.html" style="text-decoration:none; display:inline-block; padding:.75rem 1rem; border-radius: var(--radius-md); border:2px solid var(--border-color);">Back to Home</a>
+            </div>
+            <span class="subtle">Module</span>
+
+            <?php if (isset($_GET['error'])): ?>
+            <div class="error">Invalid credentials or module. Please try again.</div>
+            <?php endif; ?>
+
+            <div class="help">Use email <strong>example@gmail.com</strong> and password <strong>admin1234</strong>.</div>
+        </form>
+    </div>
+</body>
+</html>
+
+

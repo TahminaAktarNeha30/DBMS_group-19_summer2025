@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storage Facility Management</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/suppress-extension-errors.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Storage Facility Management</h1>
+        <a href="index.html">Back to Home</a>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <form id="storageForm">
+                <div class="form-group">
+                    <label for="storageId">Storage ID:</label>
+                    <input type="text" id="storageId" name="storageId" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="type">Type:</label>
+                    <select id="type" name="type" required>
+                        <option value="">Select Type</option>
+                        <option value="warehouse">Warehouse</option>
+                        <option value="cold_storage">Cold Storage</option>
+                        <option value="silo">Silo</option>
+                        <option value="open_yard">Open Yard</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location:</label>
+                    <input type="text" id="location" name="location" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="capacity">Capacity (cubic meters):</label>
+                    <input type="number" id="capacity" name="capacity" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="status">Status:</label>
+                    <select id="status" name="status" required>
+                        <option value="">Select Status</option>
+                        <option value="active">Active</option>
+                        <option value="maintenance">Under Maintenance</option>
+                        <option value="full">Full</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="entryDate">Entry Date:</label>
+                    <input type="date" id="entryDate" name="entryDate" required>
+                </div>
+
+                <button type="submit">Save Storage Facility</button>
+            </form>
+        </div>
+
+        <h2>Storage Facility List</h2>
+        <table id="storageTable">
+            <thead>
+                <tr>
+                    <th>Storage ID</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Location</th>
+                    <th>Capacity</th>
+                    <th>Status</th>
+                    <th>Entry Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be populated by JavaScript -->
+            </tbody>
+        </table>
+    </main>
+
+    <script src="js/storage_facility.js"></script>
+</body>
+</html>

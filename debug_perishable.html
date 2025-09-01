@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Perishable Products</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Debug Perishable Products Module</h1>
+        <a href="index.html">Back to Home</a>
+    </header>
+
+    <main>
+        <h2>Database Tests</h2>
+        <div id="testResults">
+            <button onclick="testDbConnection()">Test DB Connection</button>
+            <button onclick="testTableExists()">Test Table Exists</button>
+            <button onclick="testCreateTable()">Create Table</button>
+            <button onclick="testInsertData()">Test Insert Data</button>
+            <button onclick="testLoadData()">Test Load Data</button>
+        </div>
+
+        <div id="results" style="margin-top: 20px; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
+            <h3>Test Results:</h3>
+            <div id="output"></div>
+        </div>
+
+        <h2>Sample Form Test</h2>
+        <div class="form-container">
+            <form id="testForm">
+                <div class="form-group">
+                    <label for="productId">Product ID:</label>
+                    <input type="text" id="productId" name="productId" value="TEST001" required>
+                </div>
+                <div class="form-group">
+                    <label for="productName">Product Name:</label>
+                    <input type="text" id="productName" name="productName" value="Test Product" required>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category:</label>
+                    <select id="category" name="category" required>
+                        <option value="Fruits">Fruits</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="shelfLifeDays">Shelf Life (days):</label>
+                    <input type="number" id="shelfLifeDays" name="shelfLifeDays" value="7" required>
+                </div>
+                <div class="form-group">
+                    <label for="packagingType">Packaging Type:</label>
+                    <select id="packagingType" name="packagingType" required>
+                        <option value="Plastic Crates">Plastic Crates</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Quantity (KG):</label>
+                    <input type="number" id="quantity" name="quantity" step="0.01" value="1.5" required>
+                </div>
+                <div class="form-group">
+                    <label for="supplierName">Supplier Name:</label>
+                    <input type="text" id="supplierName" name="supplierName" value="Test Supplier" required>
+                </div>
+                <button type="submit">Test Save</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        function logResult(message, isError = false) {
+            const output = document.getElementById('output');
+            const div = document.createElement('div');
+            div.style.margin = '5px 0';
+            div.style.padding = '5px';
+            div.style.border = `1px solid ${isError ? 'red' : 'green'}`;
+            div.style.backgroundColor = isError ? '#ffe6e6' : '#e6ffe6';
+            div.innerHTML = `<strong>${isError ? 'ERROR' : 'SUCCESS'}:</strong> ${message}`;
+            output.appendChild(div);
+        }
+
+        function testDbConnection() {
+            fetch('test_db_setup.php')
+                .then(response => response.text())
+                .then(data => {
+                    logResult('DB Connection test completed. Check test_db_setup.php output: ' + data);
+                })
+                .catch(error => {
+                    logResult('DB Connection test failed: ' + error.message, true);
+                });
+        }
+
+        function testTableExists() {
+            fetch('php/get_perishable_products.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        logResult('Table exists and query successful. Products found: ' + data.data.length);
+                    } else {
+                        logResult('Table query failed: ' + data.error, true);
+                    }
+                })
+                .catch(error => {
+                    logResult('Table check failed: ' + error.message, true);
+                });
+        }
+
+        function testInsertData() {
+            const testData = {
+                productId: 'DEBUG001',
+                productName: 'Debug Test Product',
+                category: 'Fruits',
+                shelfLifeDays: 7,
+                packagingType: 'Plastic Crates',
+                quantity: 1.5,
+                supplierName: 'Debug Supplier'
+            };
+
+            fetch('php/save_perishable_product.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(testData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    logResult('Insert test successful!');
+                } else {
+                    logResult('Insert test failed: ' + data.error, true);
+                }
+            })
+            .catch(error => {
+                logResult('Insert test error: ' + error.message, true);
+            });
+        }
+
+        function testLoadData() {
+            fetch('php/get_perishable_products.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        logResult('Load test successful. Found ' + data.data.length + ' products.');
+                        if (data.data.length > 0) {
+                            logResult('Sample product: ' + JSON.stringify(data.data[0]));
+                        }
+                    } else {
+                        logResult('Load test failed: ' + data.error, true);
+                    }
+                })
+                .catch(error => {
+                    logResult('Load test error: ' + error.message, true);
+                });
+        }
+
+        // Form test
+        document.getElementById('testForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                productId: document.getElementById('productId').value,
+                productName: document.getElementById('productName').value,
+                category: document.getElementById('category').value,
+                shelfLifeDays: document.getElementById('shelfLifeDays').value,
+                packagingType: document.getElementById('packagingType').value,
+                quantity: document.getElementById('quantity').value,
+                supplierName: document.getElementById('supplierName').value
+            };
+
+            logResult('Sending form data: ' + JSON.stringify(formData));
+
+            fetch('php/save_perishable_product.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                logResult('Response status: ' + response.status);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    logResult('Form submit successful!');
+                } else {
+                    logResult('Form submit failed: ' + data.error, true);
+                }
+            })
+            .catch(error => {
+                logResult('Form submit error: ' + error.message, true);
+            });
+        });
+    </script>
+</body>
+</html>

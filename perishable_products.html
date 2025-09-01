@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perishable Products Management</title>
+    
+    <!-- Extension error suppression must load first -->
+    <script>
+        // Immediate suppression before any other scripts load
+        window.addEventListener('unhandledrejection', function(event) {
+            if (event.reason && event.reason.message && 
+                (event.reason.message.includes('message channel closed') || 
+                 event.reason.message.includes('listener indicated an asynchronous response'))) {
+                event.preventDefault();
+            }
+        });
+        
+        window.addEventListener('error', function(event) {
+            if (event.error && event.error.message && 
+                (event.error.message.includes('message channel closed') || 
+                 event.error.message.includes('listener indicated an asynchronous response'))) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+        });
+    </script>
+    <script src="js/suppress-extension-errors.js"></script>
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Perishable Products Management</h1>
+        <a href="index.html">Back to Home</a>
+    </header>
+
+    <main>
+        <div id="setupNotice" style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; border-radius: 5px; margin-bottom: 20px; display: none;">
+            <h3 style="color: #856404; margin: 0 0 10px 0;">⚠️ Database Setup Required</h3>
+            <p style="color: #856404; margin: 0 0 10px 0;">The perishable products table was not found in your database.</p>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <a href="database_setup.html" style="background: #28a745; color: white; padding: 8px 16px; text-decoration: none; border-radius: 3px;">Setup Database →</a>
+                <button onclick="createTableDirectly()" style="background: #007bff; color: white; padding: 8px 16px; border: none; border-radius: 3px; cursor: pointer;">Create Table Now</button>
+                <span id="createStatus" style="margin-left: 10px;"></span>
+            </div>
+        </div>
+        
+        <div class="form-container">
+            <h2>Add/Edit Perishable Product</h2>
+            <form id="perishableProductForm">
+                <!-- Basic Product Information -->
+                <div class="form-section">
+                    <h3>Basic Information</h3>
+                    <div class="form-group">
+                        <label for="productId">Product ID:</label>
+                        <input type="text" id="productId" name="productId" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productName">Product Name:</label>
+                        <input type="text" id="productName" name="productName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Category:</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select Category</option>
+                            <option value="Fruits">Fruits</option>
+                            <option value="Vegetables">Vegetables</option>
+                            <option value="Leafy Greens">Leafy Greens</option>
+                            <option value="Herbs">Herbs</option>
+                            <option value="Root Vegetables">Root Vegetables</option>
+                            <option value="Berries">Berries</option>
+                            <option value="Citrus">Citrus</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Shelf Life Information -->
+                <div class="form-section">
+                    <h3>Shelf Life Information</h3>
+                    <div class="form-group">
+                        <label for="shelfLifeDays">Shelf Life (days):</label>
+                        <input type="number" id="shelfLifeDays" name="shelfLifeDays" min="1" required>
+                    </div>
+                </div>
+
+                <!-- Packaging Details -->
+                <div class="form-section">
+                    <h3>Packaging Details</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="packagingType">Packaging Type:</label>
+                            <select id="packagingType" name="packagingType" required>
+                                <option value="">Select Type</option>
+                                <option value="Plastic Crates">Plastic Crates</option>
+                                <option value="Plastic Containers">Plastic Containers</option>
+                                <option value="Plastic Bags">Plastic Bags</option>
+                                <option value="Cardboard Boxes">Cardboard Boxes</option>
+                                <option value="Mesh Bags">Mesh Bags</option>
+                                <option value="Glass Containers">Glass Containers</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="quantity">Quantity (KG):</label>
+                            <input type="number" id="quantity" name="quantity" step="0.01" min="0" required>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit">Save Perishable Product</button>
+                <button type="button" id="clearForm">Clear Form</button>
+            </form>
+        </div>
+
+        <h2>Perishable Products List</h2>
+        <div class="table-container">
+            <table id="perishableProductsTable">
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Shelf Life</th>
+                        <th>Packaging</th>
+                        <th>Quantity (KG)</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="js/perishable_products.js"></script>
+</body>
+</html>

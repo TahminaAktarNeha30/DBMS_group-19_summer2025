@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factory Management</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/suppress-extension-errors.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Factory Management</h1>
+        <a href="index.html">Back to Home</a>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <form id="factoryForm">
+                <div class="form-group">
+                    <label for="factoryId">Factory ID:</label>
+                    <input type="text" id="factoryId" name="factoryId" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location:</label>
+                    <input type="text" id="location" name="location" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="processingCapacity">Processing Capacity:</label>
+                    <input type="number" id="processingCapacity" name="processingCapacity" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="capacityUnit">Capacity Unit:</label>
+                    <select id="capacityUnit" name="capacityUnit" required>
+                        <option value="">Select Unit</option>
+                        <option value="tons_per_day">Tons per Day</option>
+                        <option value="kg_per_hour">Kg per Hour</option>
+                        <option value="units_per_day">Units per Day</option>
+                    </select>
+                </div>
+
+                <button type="submit">Save Factory</button>
+            </form>
+        </div>
+
+        <h2>Factory List</h2>
+        <table id="factoryTable">
+            <thead>
+                <tr>
+                    <th>Factory ID</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Processing Capacity</th>
+                    <th>Capacity Unit</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be populated by JavaScript -->
+            </tbody>
+        </table>
+    </main>
+
+    <script src="js/factory_management.js"></script>
+</body>
+</html>

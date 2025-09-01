@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spoilage Record Management</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Spoilage Record Management</h1>
+        <a href="index.html">Back to Home</a>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <form id="spoilageForm">
+                <div class="form-group">
+                    <label for="recordId">Record ID:</label>
+                    <input type="text" id="recordId" name="recordId" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="sourceType">Source Type:</label>
+                    <select id="sourceType" name="sourceType" required>
+                        <option value="">Select Source Type</option>
+                        <option value="storage">Storage</option>
+                        <option value="transport">Transport</option>
+                        <option value="processing">Processing</option>
+                        <option value="packaging">Packaging</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantityLost">Quantity Lost:</label>
+                    <input type="number" id="quantityLost" name="quantityLost" step="0.01" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="reason">Reason:</label>
+                    <input type="text" id="reason" name="reason">
+                </div>
+
+                <div class="form-group">
+                    <label for="spoilageDate">Spoilage Date:</label>
+                    <input type="date" id="spoilageDate" name="spoilageDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="recyclingOutput">Recycling Output:</label>
+                    <input type="text" id="recyclingOutput" name="recyclingOutput">
+                </div>
+
+                <div class="form-group">
+                    <label for="recyclingQuantity">Recycling Quantity (KG):</label>
+                    <input type="number" id="recyclingQuantity" name="recyclingQuantity" step="0.01" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label for="financialLoss">Financial Loss:</label>
+                    <input type="number" id="financialLoss" name="financialLoss" step="0.01" required>
+                </div>
+
+                <button type="submit">Save Spoilage</button>
+            </form>
+        </div>
+
+        <h2>Spoilage Records</h2>
+        <table id="spoilageTable">
+            <thead>
+                <tr>
+                    <th>Record ID</th>
+                    <th>Source Type</th>
+                    <th>Quantity Lost</th>
+                    <th>Reason</th>
+                    <th>Spoilage Date</th>
+                    <th>Recycling Output</th>
+                    <th>Recycling Quantity</th>
+                    <th>Financial Loss</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </main>
+    <script src="js/suppress-extension-errors.js"></script>
+    <script src="js/spoilage_record.js"></script>
+</body>
+</html>
+
+
